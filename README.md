@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## style: add moon and sun emoji indicators
+## refactor: clean up OnAfterRenderAsync
 
-Commit #23
+Commit #24
