@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: add ThemeService class
+## feat: add CurrentTheme property
 
-Commit #2
+Commit #3
