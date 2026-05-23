@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## style: add light gradient background in light mode
+## style: dynamic button text Switch to Dark or Light
 
-Commit #16
+Commit #17
