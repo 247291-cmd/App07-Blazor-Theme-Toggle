@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: add ThemeToggle page component
+## feat: inject IJSRuntime for localStorage access
 
-Commit #9
+Commit #10
