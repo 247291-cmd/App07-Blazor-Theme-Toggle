@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: load theme from localStorage on first render
+## feat: apply theme class to document body via JS
 
-Commit #12
+Commit #13
