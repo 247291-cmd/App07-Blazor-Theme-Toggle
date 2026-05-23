@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## style: smooth transition on theme change
+## style: dynamic card colors based on theme
 
-Commit #19
+Commit #20
