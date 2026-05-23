@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: add OnThemeChanged event
+## feat: register ThemeService as singleton in Program.cs
 
-Commit #7
+Commit #8
