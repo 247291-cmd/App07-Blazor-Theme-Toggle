@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: implement IDisposable for event cleanup
+## style: add dark gradient background in dark mode
 
-Commit #14
+Commit #15
