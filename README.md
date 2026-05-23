@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## style: add dark gradient background in dark mode
+## style: add light gradient background in light mode
 
-Commit #15
+Commit #16
