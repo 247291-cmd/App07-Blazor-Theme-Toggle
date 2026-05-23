@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## style: dynamic card colors based on theme
+## feat: add NavMenu with dark branding
 
-Commit #20
+Commit #21
