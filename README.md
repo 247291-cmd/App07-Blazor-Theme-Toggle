@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: apply theme class to document body via JS
+## feat: implement IDisposable for event cleanup
 
-Commit #13
+Commit #14
