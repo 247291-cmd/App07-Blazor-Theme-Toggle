@@ -6,79 +6,39 @@
 
 <PageTitle>Theme Toggle - App 07</PageTitle>
 
-<div class="@(ThemeService.IsDarkMode ? "bg-dark text-white" : "bg-white text-dark")"
-     style="min-height:100vh; transition: all 0.4s ease;">
+<div class="@(ThemeService.IsDarkMode ? "bg-dark text-white" : "bg-white text-dark")" style="min-height:100vh; transition:all 0.4s ease;">
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5">
-
                 <div class="text-center mb-4">
-                    <h2 class="fw-bold @(ThemeService.IsDarkMode ? "text-white" : "text-dark")">
-                        App 07 - Theme Toggle
-                    </h2>
-                    <p class="@(ThemeService.IsDarkMode ? "text-light opacity-75" : "text-muted")">
-                        Dark/Light Mode with localStorage
-                    </p>
+                    <h2 class="fw-bold @(ThemeService.IsDarkMode ? "text-white" : "text-dark")">Theme Toggle</h2>
+                    <p class="@(ThemeService.IsDarkMode ? "text-light opacity-75" : "text-muted")">Dark/Light Mode with localStorage</p>
                 </div>
-
-                <div class="card border-0 shadow @(ThemeService.IsDarkMode ? "bg-secondary text-white" : "bg-white")"
-                     style="border-radius:16px;">
-                    <div class="card-header py-3 px-4 fw-bold text-white"
+                <div class="card border-0 shadow @(ThemeService.IsDarkMode ? "bg-secondary" : "bg-white")" style="border-radius:16px;">
+                    <div class="card-header py-3 px-4 text-white fw-bold"
                          style="background:@(ThemeService.IsDarkMode ? "#1e293b" : "#334155"); border-radius:16px 16px 0 0;">
                         <div class="d-flex justify-content-between align-items-center">
                             <span>Current Theme</span>
                             <span class="badge @(ThemeService.IsDarkMode ? "bg-light text-dark" : "bg-dark text-white") px-3">
-                                @(ThemeService.IsDarkMode ? "🌙 Dark" : "☀️ Light")
+                                @(ThemeService.IsDarkMode ? "Dark" : "Light")
                             </span>
                         </div>
                     </div>
                     <div class="card-body p-4 text-center">
-
-                        <div class="mb-4" style="font-size:4rem;">
-                            @(ThemeService.IsDarkMode ? "🌙" : "☀️")
-                        </div>
-
-                        <h4 class="fw-bold @(ThemeService.IsDarkMode ? "text-white" : "text-dark") mb-2">
+                        <div class="mb-3" style="font-size:4rem;">@(ThemeService.IsDarkMode ? "🌙" : "☀️")</div>
+                        <h4 class="fw-bold @(ThemeService.IsDarkMode ? "text-white" : "text-dark") mb-4">
                             @(ThemeService.IsDarkMode ? "Dark Mode Active" : "Light Mode Active")
                         </h4>
-                        <p class="@(ThemeService.IsDarkMode ? "text-light opacity-75" : "text-muted") mb-4">
-                            Preference saved to localStorage — reloads remembered!
-                        </p>
-
-                        <button class="btn btn-lg w-100 fw-bold py-3 mb-3"
+                        <button class="btn btn-lg w-100 fw-bold py-3"
                                 style="border-radius:12px; background:@(ThemeService.IsDarkMode ? "#f59e0b" : "#1e293b"); color:@(ThemeService.IsDarkMode ? "#1e293b" : "white"); border:none;"
                                 @onclick="ToggleTheme">
-                            @(ThemeService.IsDarkMode ? "☀️ Switch to Light Mode" : "🌙 Switch to Dark Mode")
+                            @(ThemeService.IsDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode")
                         </button>
-
-                        <div class="row g-2">
-                            <div class="col-3"><div class="rounded-3 py-2" style="background:#6366f1;"></div></div>
-                            <div class="col-3"><div class="rounded-3 py-2" style="background:#ec4899;"></div></div>
-                            <div class="col-3"><div class="rounded-3 py-2" style="background:#10b981;"></div></div>
-                            <div class="col-3"><div class="rounded-3 py-2" style="background:#f59e0b;"></div></div>
-                        </div>
-
+                        <p class="mt-3 @(ThemeService.IsDarkMode ? "text-light opacity-75" : "text-muted") small">
+                            Reload the page — your preference is remembered!
+                        </p>
                     </div>
                 </div>
-
-                <div class="card mt-4 border-0 shadow-sm @(ThemeService.IsDarkMode ? "bg-secondary text-white" : "")"
-                     style="border-radius:16px;">
-                    <div class="card-body p-4">
-                        <h6 class="fw-bold @(ThemeService.IsDarkMode ? "text-white" : "text-dark") mb-3">Implementation Details</h6>
-                        <ul class="list-unstyled mb-0">
-                            <li class="mb-2 @(ThemeService.IsDarkMode ? "text-light" : "text-dark") small">
-                                <span class="badge bg-primary me-2">ThemeService</span>Singleton service with Toggle() and OnThemeChanged event
-                            </li>
-                            <li class="mb-2 @(ThemeService.IsDarkMode ? "text-light" : "text-dark") small">
-                                <span class="badge bg-success me-2">localStorage</span>IJSRuntime saves/loads theme preference
-                            </li>
-                            <li class="@(ThemeService.IsDarkMode ? "text-light" : "text-dark") small">
-                                <span class="badge bg-warning text-dark me-2">Body Class</span>JS sets document.body.className for CSS theme rules
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
@@ -86,7 +46,6 @@
 
 @code {
     protected override void OnInitialized() => ThemeService.OnThemeChanged += StateHasChanged;
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -96,16 +55,13 @@
             await ApplyThemeToBody();
         }
     }
-
     private async Task ToggleTheme()
     {
         ThemeService.Toggle();
         await JS.InvokeVoidAsync("localStorage.setItem", "theme", ThemeService.CurrentTheme);
         await ApplyThemeToBody();
     }
-
     private async Task ApplyThemeToBody()
         => await JS.InvokeVoidAsync("eval", $"document.body.className = 'theme-{ThemeService.CurrentTheme}'");
-
     public void Dispose() => ThemeService.OnThemeChanged -= StateHasChanged;
 }
