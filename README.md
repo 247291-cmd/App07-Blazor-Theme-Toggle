@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: inject IJSRuntime for localStorage access
+## feat: save theme to localStorage on toggle
 
-Commit #10
+Commit #11
