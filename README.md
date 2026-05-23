@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: register ThemeService as singleton in Program.cs
+## feat: add ThemeToggle page component
 
-Commit #8
+Commit #9
