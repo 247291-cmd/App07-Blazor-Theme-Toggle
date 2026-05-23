@@ -1,0 +1,88 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@inject App07_ThemeToggle.Services.ThemeService ThemeService
+@inject IJSRuntime JS
+@implements IDisposable
+
+<PageTitle>Theme Toggle</PageTitle>
+
+<div class="min-vh-100 d-flex align-items-center transition-all"
+     style="background: @(ThemeService.IsDarkMode ? "linear-gradient(135deg, #0f0c29, #302b63, #24243e)" : "linear-gradient(135deg, #ffecd2, #fcb69f)"); transition: background 0.5s ease;">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5 col-lg-4">
+
+                <div class="text-center mb-4">
+                    <div style="font-size:4rem; transition: all 0.3s;">
+                        @(ThemeService.IsDarkMode ? "🌙" : "☀️")
+                    </div>
+                    <h2 class="fw-bold @(ThemeService.IsDarkMode ? "text-white" : "text-dark")">
+                        @(ThemeService.IsDarkMode ? "Dark Mode" : "Light Mode")
+                    </h2>
+                    <p class="@(ThemeService.IsDarkMode ? "text-light opacity-75" : "text-muted")">
+                        Preference saved to localStorage
+                    </p>
+                </div>
+
+                <div class="card border-0 shadow-lg @(ThemeService.IsDarkMode ? "bg-dark text-white" : "bg-white")"
+                     style="border-radius:24px;">
+                    <div class="card-body p-4 text-center">
+
+                        <div class="mb-4 p-3 rounded-3"
+                             style="background: @(ThemeService.IsDarkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.03)");">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="@(ThemeService.IsDarkMode ? "text-light" : "text-muted") small">Current Theme</span>
+                                <span class="badge rounded-pill px-3 @(ThemeService.IsDarkMode ? "bg-light text-dark" : "bg-dark text-white")">
+                                    @(ThemeService.IsDarkMode ? "Dark" : "Light")
+                                </span>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-lg w-100 fw-bold py-3 mb-3"
+                                style="border-radius:14px; background: @(ThemeService.IsDarkMode ? "linear-gradient(135deg,#ffecd2,#fcb69f)" : "linear-gradient(135deg,#0f0c29,#302b63)"); color: @(ThemeService.IsDarkMode ? "#333" : "white"); border:none; transition: all 0.3s;"
+                                @onclick="ToggleTheme">
+                            @(ThemeService.IsDarkMode ? "☀️ Switch to Light Mode" : "🌙 Switch to Dark Mode")
+                        </button>
+
+                        <div class="row g-2 mt-2">
+                            <div class="col-3"><div class="rounded-3 py-2" style="background:#6c63ff;"></div></div>
+                            <div class="col-3"><div class="rounded-3 py-2" style="background:#ff6584;"></div></div>
+                            <div class="col-3"><div class="rounded-3 py-2" style="background:#43e97b;"></div></div>
+                            <div class="col-3"><div class="rounded-3 py-2" style="background:#f093fb;"></div></div>
+                        </div>
+                        <p class="@(ThemeService.IsDarkMode ? "text-light opacity-50" : "text-muted") small mt-2">
+                            Reload the page — your theme is remembered!
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override void OnInitialized() => ThemeService.OnThemeChanged += StateHasChanged;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var saved = await JS.InvokeAsync<string?>("localStorage.getItem", "theme");
+            if (!string.IsNullOrEmpty(saved)) { ThemeService.SetTheme(saved); StateHasChanged(); }
+            await ApplyThemeToBody();
+        }
+    }
+
+    private async Task ToggleTheme()
+    {
+        ThemeService.Toggle();
+        await JS.InvokeVoidAsync("localStorage.setItem", "theme", ThemeService.CurrentTheme);
+        await ApplyThemeToBody();
+    }
+
+    private async Task ApplyThemeToBody()
+        => await JS.InvokeVoidAsync("eval", $"document.body.className = 'theme-{ThemeService.CurrentTheme}'");
+
+    public void Dispose() => ThemeService.OnThemeChanged -= StateHasChanged;
+}
