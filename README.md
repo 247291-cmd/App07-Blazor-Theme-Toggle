@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: add SetTheme method
+## feat: add Toggle method
 
-Commit #5
+Commit #6
