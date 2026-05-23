@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## fix: theme persists after page reload
+## style: add moon and sun emoji indicators
 
-Commit #22
+Commit #23
