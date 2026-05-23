@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## chore: add gitignore
+## docs: add README for App07
 
-Commit #25
+Commit #26
