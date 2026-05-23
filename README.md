@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: add NavMenu with dark branding
+## fix: theme persists after page reload
 
-Commit #21
+Commit #22
