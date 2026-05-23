@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## style: add color swatches preview
+## style: smooth transition on theme change
 
-Commit #18
+Commit #19
