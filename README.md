@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: add IsDarkMode computed property
+## feat: add SetTheme method
 
-Commit #4
+Commit #5
