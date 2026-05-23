@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## refactor: clean up OnAfterRenderAsync
+## chore: add gitignore
 
-Commit #24
+Commit #25
