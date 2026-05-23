@@ -1,5 +1,5 @@
 ﻿# App07-Blazor-Theme-Toggle
 
-## feat: save theme to localStorage on toggle
+## feat: load theme from localStorage on first render
 
-Commit #11
+Commit #12
